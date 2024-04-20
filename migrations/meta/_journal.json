@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1713381473903,
+      "tag": "0000_cooing_scream",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1713382300814,
+      "tag": "0001_illegal_psylocke",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1713382971842,
+      "tag": "0002_thankful_doomsday",
+      "breakpoints": true
+    }
+  ]
+}
