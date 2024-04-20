@@ -9,6 +9,7 @@ import { useAppState } from "@/hooks/useAppState";
 import { Button } from "@/components/ui/shad-button";
 import { Icons } from "@/components/ui/react-icons";
 import { usePathname } from "next/navigation";
+import Title from "./Title";
 
 const EditorDetails = ({
   details,
@@ -58,10 +59,11 @@ const EditorDetails = ({
     <div
       className="w-full 
     self-center 
-    max-w-[800px] 
+    lg:max-w-2xl  xl:max-w-3xl
+    pl-20
+    lg:pl-0
     flex 
     flex-col
-    px-7 
     lg:my-8"
     >
       <div className="text-[80px] mb-2">
@@ -96,16 +98,7 @@ const EditorDetails = ({
           </BannerUpload>
         </div>
       )}
-      <span
-        className="
-      text-muted-foreground
-      text-3xl
-      font-bold
-      h-9
-    "
-      >
-        {details.title}
-      </span>
+      <Title title={details.title} id={fileId} type={type} />
     </div>
   );
 };

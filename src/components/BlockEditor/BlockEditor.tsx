@@ -4,6 +4,7 @@ import { EditorContent, JSONContent, PureEditorContent } from "@tiptap/react";
 import React, {
   startTransition,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -38,6 +39,7 @@ import EditorDetails from "./components/EditorDetails";
 import { ScrollArea } from "../ui/scroll-area";
 import CoverImage from "./components/CoverImage";
 import { File, Folder, workspace } from "@/lib/supabase/types";
+import { Skeleton } from "../ui/skeleton";
 
 export const BlockEditor = ({
   ydoc,
@@ -49,6 +51,7 @@ export const BlockEditor = ({
   const supabase = createClientComponentClient();
   const { state, workspaceId, folderId, dispatch } = useAppState();
   const [saving, setSaving] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const router = useRouter();
   const path = usePathname();
   const menuContainerRef = useRef(null);
@@ -82,8 +85,6 @@ export const BlockEditor = ({
 
     return dirDetails;
   }, [state, workspaceId, folderId, fileId, dirType, dirDetails]);
-
-  console.log({ details });
 
   const updateEditorJson = useCallback(
     async (editorJson: JSONContent) => {
@@ -156,6 +157,13 @@ export const BlockEditor = ({
   const { editor, users, characterCount, collabState, leftSidebar } =
     useBlockEditor({ ydoc, provider, content, debouncedUpdates });
 
+  useEffect(() => {
+    if (editor && !hydrated) {
+      editor.commands.setContent(content);
+      setHydrated(true);
+    }
+  }, [editor, hydrated, content]);
+
   const displayedUsers = users.slice(0, 3);
 
   if (!editor) {
@@ -184,6 +192,7 @@ export const BlockEditor = ({
           words={characterCount.words()}
           isSidebarOpen={leftSidebar.isOpen}
           toggleSidebar={leftSidebar.toggle}
+          isSaving={saving}
         />
         <ScrollArea className="h-[calc(100vh_-_48px)]" type="always">
           <main className="flex flex-col h-[inherit]">

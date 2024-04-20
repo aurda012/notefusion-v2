@@ -73,7 +73,7 @@ const CoverImage: React.FC<CoverImageProps> = ({ id, coverImage, type }) => {
     <div className="h-[200px] md:h-[280px] w-full relative group shrink-0">
       <Image
         src={`${coverImage}`}
-        className="object-cover md:object-left z-0 bg-accent"
+        className="object-cover md:object-left z-0 bg-accent object-center"
         alt="cover image"
         quality={95}
         priority

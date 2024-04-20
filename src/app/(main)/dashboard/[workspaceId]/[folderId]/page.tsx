@@ -8,7 +8,7 @@ import { Doc as YDoc } from "yjs";
 
 import { BlockEditor } from "@/components/BlockEditor";
 import DarkModeSwitcher from "@/components/common/dark-mode-switcher";
-import { getWorkspaceDetails } from "@/lib/supabase/queries";
+import { getFolderDetails, getWorkspaceDetails } from "@/lib/supabase/queries";
 
 export default function Document({ params }: { params: { folderId: string } }) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
@@ -22,7 +22,7 @@ export default function Document({ params }: { params: { folderId: string } }) {
 
   useEffect(() => {
     const dataFetch = async () => {
-      const { data, error } = await getWorkspaceDetails(folderId);
+      const { data, error } = await getFolderDetails(folderId);
       console.log({ data, error });
       if (error || !data.length) redirect("/dashboard");
       setFolderDetails(data[0]);

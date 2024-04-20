@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 import db from "@/lib/supabase/db";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import CypressProfileIcon from "@/components/ui/Icons/cypressProfileIcon";
-import ModeToggle from "@/components/common/mode-toggle";
 import { LogOut } from "lucide-react";
 import LogoutButton from "@/components/common/logout-button";
 
@@ -59,21 +58,12 @@ const UserCard: React.FC<UserCardProps> = async ({ subscription }) => {
           <span className="text-muted-foreground">
             {subscription?.status === "active" ? "Pro Plan" : "Free Plan"}
           </span>
-          {/* <small
-            className="w-[100px] 
-          overflow-hidden 
-          overflow-ellipsis
-          "
-          >
-            {profile.email}
-          </small> */}
         </div>
       </aside>
       <div className="flex items-center justify-center">
         <LogoutButton>
           <LogOut />
         </LogoutButton>
-        <ModeToggle />
       </div>
     </article>
   );
