@@ -18,7 +18,20 @@ import {
   ImageIcon,
   CameraIcon,
   UpdateIcon,
+  LinkedInLogoIcon,
+  GitHubLogoIcon,
+  TwitterLogoIcon,
 } from "@radix-ui/react-icons";
+import {
+  X,
+  AlignJustify,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  HelpCircleIcon,
+  CheckCircle2,
+  XCircle,
+} from "lucide-react";
 
 export type IconsProps = {
   className?: string;
@@ -27,6 +40,17 @@ export type IconsProps = {
 export type IconsNames = keyof typeof Icons;
 
 export const Icons = {
+  helpCircle: HelpCircleIcon,
+  checkCircle: CheckCircle2,
+  xCircle: XCircle,
+  quote: Quote,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  menu: AlignJustify,
+  close: X,
+  Linkedin: LinkedInLogoIcon,
+  GitHub: GitHubLogoIcon,
+  Twitter: TwitterLogoIcon,
   HamburgerMenu: HamburgerMenuIcon,
   X: Cross1Icon,
   Moon: MoonIcon,

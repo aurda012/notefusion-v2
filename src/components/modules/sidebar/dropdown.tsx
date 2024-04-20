@@ -310,8 +310,6 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   };
 
-  console.log(state.workspaces);
-
   return (
     <AccordionItem value={id} className={listStyles}>
       <div className="flex">

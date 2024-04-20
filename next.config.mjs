@@ -32,6 +32,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    serverComponentsExternalPackages: ["@tiptap/react"],
+  },
 };
 
 export default nextConfig;

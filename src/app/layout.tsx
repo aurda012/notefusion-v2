@@ -14,6 +14,16 @@ const inter = DM_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "NoteFusion",
   description: "An all-in-one Collaboration and Productivity Platform",
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Server Components",
+    "Radix UI",
+    "Journal App",
+    "Shadcn",
+    "Editor",
+  ],
 };
 
 export default function RootLayout({
@@ -25,12 +35,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={twMerge("bg-background", inter.className)}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <AppStateProvider>
-            <SupabaseUserProvider>
+          <SupabaseUserProvider>
+            <AppStateProvider>
               {children}
               <Toaster />
-            </SupabaseUserProvider>
-          </AppStateProvider>
+            </AppStateProvider>
+          </SupabaseUserProvider>
         </ThemeProvider>
       </body>
     </html>

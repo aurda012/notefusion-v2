@@ -18,3 +18,33 @@ export const CreateWorkspaceFormSchema = z.object({
 export const UploadBannerFormSchema = z.object({
   banner: z.string().describe("Banner Image"),
 });
+
+export type NavItem = {
+  title: string;
+  href: string;
+  disabled?: boolean;
+};
+
+export type MainNavItem = NavItem;
+
+export type SiteConfig = {
+  name: string;
+  description: string;
+  url: string;
+  ogImage: string;
+  links: {
+    twitter: string;
+    github: string;
+    linkedin: string;
+  };
+};
+
+export type MarketingConfig = {
+  mainNav: MainNavItem[];
+};
+
+export type SubscriptionPlan = {
+  name: string;
+  description: string;
+  stripePriceId: string;
+};

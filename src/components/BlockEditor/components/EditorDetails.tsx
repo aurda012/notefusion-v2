@@ -64,7 +64,7 @@ const EditorDetails = ({
     lg:pl-0
     flex 
     flex-col
-    lg:my-8"
+    lg:mt-8"
     >
       <div className="text-[80px] mb-2">
         <EmojiPicker getValue={iconOnChange}>

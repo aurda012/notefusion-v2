@@ -157,13 +157,6 @@ export const BlockEditor = ({
   const { editor, users, characterCount, collabState, leftSidebar } =
     useBlockEditor({ ydoc, provider, content, debouncedUpdates });
 
-  useEffect(() => {
-    if (editor && !hydrated) {
-      editor.commands.setContent(content);
-      setHydrated(true);
-    }
-  }, [editor, hydrated, content]);
-
   const displayedUsers = users.slice(0, 3);
 
   if (!editor) {
