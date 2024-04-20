@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { FC, useEffect } from "react"
-import { stagger, useAnimate, useInView } from "framer-motion"
+import { FC, useEffect } from "react";
+import { stagger, useAnimate, useInView } from "framer-motion";
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 
 interface FeaturesProps {}
 
@@ -16,18 +16,17 @@ const features = [
     demo: "https://scribbly.s3.ap-south-1.amazonaws.com/editor-dark_gfnig8.mp4",
   },
   {
-    id: "reminder",
-    title: `Personalized Entry Reminders`,
-    description: ` Set personalized reminders to ensure consistent journaling and
-        never miss an opportunity to reflect and record your thoughts.`,
-    thumbnail: "/images/features/reminder.webp",
-    demo: "https://scribbly.s3.ap-south-1.amazonaws.com/reminder-dark_elaitc.mp4",
+    id: "collaboration",
+    title: `Live Collaboration and Sharing`,
+    description: `Add collaborators to your workspace and work together in real-time. Share your journal entries with anyone, anywhere.`,
+    thumbnail: "/images/notefusion-collaboration.png",
+    demo: "",
   },
-]
+];
 
 const Features: FC<FeaturesProps> = () => {
-  const [scope, animate] = useAnimate()
-  const isInView = useInView(scope, { once: true })
+  const [scope, animate] = useAnimate();
+  const isInView = useInView(scope, { once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -35,9 +34,9 @@ const Features: FC<FeaturesProps> = () => {
         "#reveal-anim",
         { opacity: [0, 1], y: [25, 0] },
         { duration: 0.5, ease: "easeIn", delay: stagger(0.3) }
-      )
+      );
     }
-  }, [animate, isInView])
+  }, [animate, isInView]);
   return (
     <div ref={scope} className="grid grid-cols-1 gap-10 py-16 md:grid-cols-2">
       {features.map((feature) => (
@@ -70,7 +69,7 @@ const Features: FC<FeaturesProps> = () => {
         </Card>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Features
+export default Features;
