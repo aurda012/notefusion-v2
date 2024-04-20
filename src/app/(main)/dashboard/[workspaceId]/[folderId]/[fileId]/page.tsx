@@ -8,28 +8,32 @@ import { Doc as YDoc } from "yjs";
 
 import { BlockEditor } from "@/components/BlockEditor";
 import DarkModeSwitcher from "@/components/common/dark-mode-switcher";
-import { getFolderDetails, getWorkspaceDetails } from "@/lib/supabase/queries";
+import {
+  getFileDetails,
+  getFolderDetails,
+  getWorkspaceDetails,
+} from "@/lib/supabase/queries";
 import Loading from "@/components/common/loading";
 
-export default function Document({ params }: { params: { folderId: string } }) {
+export default function Document({ params }: { params: { fileId: string } }) {
   const [provider, setProvider] = useState<TiptapCollabProvider | null>(null);
   const [collabToken, setCollabToken] = useState<string | null>(null);
-  const [folderDetails, setFolderDetails] = useState<any | {}>({});
+  const [fileDetails, setFileDetails] = useState<any | {}>({});
   const searchParams = useSearchParams();
 
   const hasCollab = parseInt(searchParams.get("noCollab") as string) !== 1;
 
-  const { folderId } = params;
+  const { fileId } = params;
 
   useEffect(() => {
     const dataFetch = async () => {
-      const { data, error } = await getFolderDetails(folderId);
+      const { data, error } = await getFileDetails(fileId);
       console.log({ data, error });
       if (error || !data.length) redirect("/dashboard");
-      setFolderDetails(data[0]);
+      setFileDetails(data[0]);
     };
     dataFetch();
-  }, [folderId]);
+  }, [fileId]);
 
   useEffect(() => {
     // fetch data
@@ -58,28 +62,28 @@ export default function Document({ params }: { params: { folderId: string } }) {
     if (hasCollab && collabToken) {
       setProvider(
         new TiptapCollabProvider({
-          name: `${folderId}`,
+          name: `${fileId}`,
           appId: process.env.NEXT_PUBLIC_TIPTAP_COLLAB_APP_ID ?? "",
           token: collabToken,
           document: ydoc,
         })
       );
     }
-  }, [setProvider, collabToken, ydoc, folderId, hasCollab]);
+  }, [setProvider, collabToken, ydoc, fileId, hasCollab]);
 
   if (hasCollab && (!collabToken || !provider)) return;
 
   return (
     <>
-      {Object.keys(folderDetails).length === 0 && <Loading />}
+      {Object.keys(fileDetails).length === 0 && <Loading />}
       <DarkModeSwitcher />
       <BlockEditor
         hasCollab={hasCollab}
         ydoc={ydoc}
         provider={provider}
-        dirType="folder"
-        fileId={folderId}
-        dirDetails={folderDetails}
+        dirType="file"
+        fileId={fileId}
+        dirDetails={fileDetails}
       />
     </>
   );

@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/shad-button";
 import {
   Form,
   FormControl,
@@ -18,12 +18,12 @@ import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import Logo from "../../../../public/cypresslogo.svg";
 import Loader from "@/components/common/loader";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { MailCheck } from "lucide-react";
 import { FormSchema } from "@/lib/types";
 import { actionSignUpUser } from "@/lib/supabase/auth.actions";
+import DarkModeSwitcher from "@/components/common/dark-mode-switcher";
 
 const SignUpFormSchema = z
   .object({
@@ -100,7 +100,12 @@ const Signup = () => {
           justify-left
           items-center"
         >
-          <Image src={Logo} alt="cypress Logo" width={50} height={50} />
+          <Image
+            src={"/cypresslogo.svg"}
+            alt="cypress Logo"
+            width={50}
+            height={50}
+          />
           <span
             className="font-semibold
           dark:text-white text-4xl first-letter:ml-2"
@@ -186,6 +191,7 @@ const Signup = () => {
           </>
         )}
       </form>
+      <DarkModeSwitcher />
     </Form>
   );
 };

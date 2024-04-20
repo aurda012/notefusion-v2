@@ -32,7 +32,7 @@ export const useBlockEditor = ({
   content: JSONContent;
   debouncedUpdates: DebouncedState<({ editor }: any) => Promise<void>>;
 }) => {
-  // const { user } = useSupabaseUser();
+  const { user, userData } = useSupabaseUser();
   const leftSidebar = useSidebar();
   const [collabState, setCollabState] = useState<WebSocketStatus>(
     WebSocketStatus.Connecting
@@ -59,8 +59,13 @@ export const useBlockEditor = ({
         CollaborationCursor.configure({
           provider,
           user: {
-            name: randomElement(userNames),
+            name: userData
+              ? userData.fullName
+                ? userData.fullName
+                : userData.email
+              : user?.email,
             color: randomElement(userColors),
+            clientId: user?.id,
           },
         }),
       ],
@@ -85,7 +90,7 @@ export const useBlockEditor = ({
       const names = user.name?.split(" ");
       const firstName = names?.[0];
       const lastName = names?.[names.length - 1];
-      const initials = `${firstName?.[0] || "?"}${lastName?.[0] || "?"}`;
+      const initials = `${firstName?.[0] || "?"}${lastName?.[0] || ""}`;
 
       return { ...user, initials: initials.length ? initials : "?" };
     });

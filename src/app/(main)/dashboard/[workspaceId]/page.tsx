@@ -9,6 +9,7 @@ import { Doc as YDoc } from "yjs";
 import { BlockEditor } from "@/components/BlockEditor";
 import DarkModeSwitcher from "@/components/common/dark-mode-switcher";
 import { getWorkspaceDetails } from "@/lib/supabase/queries";
+import Loading from "@/components/common/loading";
 
 export default function Document({
   params,
@@ -73,6 +74,7 @@ export default function Document({
 
   return (
     <>
+      {Object.keys(workspaceDetails).length === 0 && <Loading />}
       <DarkModeSwitcher />
       <BlockEditor
         hasCollab={hasCollab}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppState } from "@/hooks/useAppState";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import {
   AccordionContent,
@@ -41,6 +41,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   const { user } = useSupabaseUser();
   const { state, dispatch, workspaceId, folderId } = useAppState();
   const [isEditing, setIsEditing] = useState(false);
+  const path = usePathname();
   const router = useRouter();
 
   //folder Title synced with server data and local
@@ -99,12 +100,16 @@ const Dropdown: React.FC<DropdownProps> = ({
         title: "Success",
         description: "Folder title changed.",
       });
-      await updateFolder({ title }, fId[0]);
+      await updateFolder({ title }, fId[0], path);
     }
 
     if (fId.length === 2 && fId[1]) {
       if (!fileTitle) return;
-      const { data, error } = await updateFile({ title: fileTitle }, fId[1]);
+      const { data, error } = await updateFile(
+        { title: fileTitle },
+        fId[1],
+        path
+      );
       if (error) {
         toast({
           title: "Error",
@@ -131,7 +136,11 @@ const Dropdown: React.FC<DropdownProps> = ({
           folder: { iconId: selectedEmoji },
         },
       });
-      const { data, error } = await updateFolder({ iconId: selectedEmoji }, id);
+      const { data, error } = await updateFolder(
+        { iconId: selectedEmoji },
+        id,
+        path
+      );
       if (error) {
         toast({
           title: "Error",
@@ -192,7 +201,8 @@ const Dropdown: React.FC<DropdownProps> = ({
       });
       const { data, error } = await updateFolder(
         { inTrash: `Deleted by ${user?.email}` },
-        pathId[0]
+        pathId[0],
+        path
       );
       if (error) {
         toast({
@@ -220,7 +230,8 @@ const Dropdown: React.FC<DropdownProps> = ({
       });
       const { data, error } = await updateFile(
         { inTrash: `Deleted by ${user?.email}` },
-        pathId[1]
+        pathId[1],
+        path
       );
       if (error) {
         toast({
@@ -316,7 +327,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         <div className={groupIdentifies}>
           <div
             className="flex 
-          gap-4 
+          gap-2
           items-center 
           justify-center 
           overflow-hidden"

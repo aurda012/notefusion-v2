@@ -15,12 +15,11 @@ import {
 } from "@/components/ui/form";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "../../../../public/cypresslogo.svg";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/shad-button";
 import Loader from "@/components/common/loader";
-import { Separator } from "@/components/ui/separator";
 import { actionLoginUser } from "@/lib/supabase/auth.actions";
+import DarkModeSwitcher from "@/components/common/dark-mode-switcher";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -62,7 +61,12 @@ const LoginPage = () => {
           justify-left
           items-center"
         >
-          <Image src={Logo} alt="cypress Logo" width={50} height={50} />
+          <Image
+            src={"/cypresslogo.svg"}
+            alt="cypress Logo"
+            width={50}
+            height={50}
+          />
           <span
             className="font-semibold
           dark:text-white text-4xl first-letter:ml-2"
@@ -118,6 +122,7 @@ const LoginPage = () => {
           </Link>
         </span>
       </form>
+      <DarkModeSwitcher />
     </Form>
   );
 };

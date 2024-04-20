@@ -36,6 +36,20 @@ export const getUserSubscriptionStatus = async (userId: string) => {
   }
 };
 
+export const getUserData = async (userId: string) => {
+  try {
+    const response = (await db
+      .select()
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1)) as User[];
+    return { data: response, error: null };
+  } catch (error) {
+    console.log(error);
+    return { data: null, error: error };
+  }
+};
+
 export const getFolders = async (workspaceId: string) => {
   const isValid = validate(workspaceId);
   if (!isValid)

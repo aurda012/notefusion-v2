@@ -1,5 +1,4 @@
 import { useAppState } from "@/hooks/useAppState";
-import { useSupabaseUser } from "@/hooks/useSupabaseUser";
 import { updateFile, updateFolder } from "@/lib/supabase/queries";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";

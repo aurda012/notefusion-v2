@@ -8,7 +8,7 @@ import { useSupabaseUser } from "@/hooks/useSupabaseUser";
 import { updateFile } from "@/lib/supabase/queries";
 import clsx from "clsx";
 import { Trash } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 interface FileProps {
@@ -23,6 +23,7 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
   const { user } = useSupabaseUser();
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
+  const path = usePathname();
 
   const fileTitle: string | undefined = useMemo(() => {
     const stateTitle = state.workspaces
@@ -50,7 +51,7 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
         file: { iconId: selectedEmoji },
       },
     });
-    const { error } = await updateFile({ iconId: selectedEmoji }, id);
+    const { error } = await updateFile({ iconId: selectedEmoji }, id, path);
     if (error) {
       toast({
         title: "Error",
@@ -69,7 +70,7 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
     if (!isEditing) return;
     setIsEditing(false);
     if (!fileTitle) return;
-    const { error } = await updateFile({ title: fileTitle }, id);
+    const { error } = await updateFile({ title: fileTitle }, id, path);
     if (error) {
       toast({
         title: "Error",
@@ -113,7 +114,8 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
     });
     const { data, error } = await updateFile(
       { inTrash: `Deleted by ${user?.email}` },
-      id
+      id,
+      path
     );
     if (error) {
       toast({
@@ -141,7 +143,7 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
     >
       <div
         className="flex 
-    gap-4 
+    gap-2 
     items-center 
     justify-center 
     overflow-hidden"
