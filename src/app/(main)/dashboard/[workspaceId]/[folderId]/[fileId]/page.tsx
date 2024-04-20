@@ -28,7 +28,6 @@ export default function Document({ params }: { params: { fileId: string } }) {
   useEffect(() => {
     const dataFetch = async () => {
       const { data, error } = await getFileDetails(fileId);
-      console.log({ data, error });
       if (error || !data.length) redirect("/dashboard");
       setFileDetails(data[0]);
     };

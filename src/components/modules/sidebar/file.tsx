@@ -1,6 +1,5 @@
 "use client";
 
-import EmojiPicker from "@/components/common/emoji-picker";
 import TooltipComponent from "@/components/common/tooltip-component";
 import { toast } from "@/components/ui/use-toast";
 import { useAppState } from "@/hooks/useAppState";
@@ -38,32 +37,6 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
   const navigatatePage = () => {
     // console.log("Filed Clicked");
     router.push(`/dashboard/${workspaceId}/${folderId}/${id}`);
-  };
-
-  const onChangeEmoji = async (selectedEmoji: string) => {
-    if (!workspaceId) return;
-    dispatch({
-      type: "UPDATE_FILE",
-      payload: {
-        folderId,
-        workspaceId,
-        fileId: id,
-        file: { iconId: selectedEmoji },
-      },
-    });
-    const { error } = await updateFile({ iconId: selectedEmoji }, id, path);
-    if (error) {
-      toast({
-        title: "Error",
-        variant: "destructive",
-        description: "Could not update the emoji for this folder",
-      });
-    } else {
-      toast({
-        title: "Success",
-        description: "Update emoji for the folder",
-      });
-    }
   };
 
   const handleBlur = async () => {
@@ -148,9 +121,7 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
     justify-center 
     overflow-hidden"
       >
-        <div className="relative">
-          <EmojiPicker getValue={onChangeEmoji}>{iconId}</EmojiPicker>
-        </div>
+        <div className="relative">{iconId}</div>
         <input
           type="text"
           value={fileTitle}

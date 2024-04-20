@@ -27,7 +27,7 @@ const SiteLayout: React.FC<SiteLayoutProps> = async ({ children }) => {
           <MainNav items={marketingConfig.mainNav} />
           <nav>
             <Link
-              href={user?.id ? "/dashboard" : "/sign-in"}
+              href={user?.id ? "/dashboard" : "/login"}
               className={cn(
                 buttonVariants({ size: "lg", variant: "cta" }),
                 "rounded-full px-4"

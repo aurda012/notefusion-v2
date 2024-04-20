@@ -49,7 +49,7 @@ const HeroSection: FC = () => {
 
           <Link
             id="transform-anim"
-            href="/journal"
+            href="/sign-up"
             className={cn(
               buttonVariants({ variant: "cta" }),
               "mt-8 flex h-12 items-center justify-center space-x-5 p-[.25rem_.3rem_.25rem_1.3rem] text-base"

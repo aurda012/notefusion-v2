@@ -35,7 +35,6 @@ const CoverImage: React.FC<CoverImageProps> = ({ id, coverImage, type }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const onDelete = async () => {
-    console.log("Clicked");
     setIsDeleting(true);
     if (type === "file") {
       if (!folderId || !workspaceId) return;

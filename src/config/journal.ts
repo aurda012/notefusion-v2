@@ -1,35 +1,35 @@
-import { JournalConfig } from "@/types"
+import { JournalConfig } from "@/types";
 
 export const journalConfig: JournalConfig = {
   mainNav: [
     {
       title: "Entries",
-      href: "/journal",
+      href: "/dashboard",
     },
     {
       title: "Billing",
-      href: "/journal/billing",
+      href: "/dashboard",
     },
     {
       title: "Settings",
-      href: "/journal/settings",
+      href: "/dashboard",
     },
   ],
   sidebarNav: [
     {
       title: "Entries",
-      href: "/journal",
+      href: "/dashboard",
       icon: "post",
     },
     {
       title: "Billing",
-      href: "/journal/billing",
+      href: "/dashboard",
       icon: "billing",
     },
     {
       title: "Settings",
-      href: "/journal/settings",
+      href: "/dashboard",
       icon: "settings",
     },
   ],
-}
+};

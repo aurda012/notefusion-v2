@@ -24,7 +24,6 @@ export default function Document({ params }: { params: { folderId: string } }) {
   useEffect(() => {
     const dataFetch = async () => {
       const { data, error } = await getFolderDetails(folderId);
-      console.log({ data, error });
       if (error || !data.length) redirect("/dashboard");
       setFolderDetails(data[0]);
     };

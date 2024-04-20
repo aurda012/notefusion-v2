@@ -77,7 +77,7 @@ const SiteFooter: FC<SiteFooterProps> = ({ className }) => {
                   <li>
                     <a
                       className="text-sm text-muted-foreground transition-colors duration-200 ease-in-out hover:text-accent-foreground"
-                      href={siteConfig.links.twitter}
+                      href={siteConfig.links.github}
                       target="_blank"
                       rel="noreferrer"
                     >

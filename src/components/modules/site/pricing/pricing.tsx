@@ -25,18 +25,18 @@ interface PricingProps {}
 
 const pricingItems = [
   {
-    id: "starter",
-    plan: "Starter",
+    id: "free",
+    plan: "Free",
     tagline:
-      "Experience the joy of journaling for free with Scribbly's essential features and intuitive interface",
-    price: "0₹",
-    period: "per month",
+      "Experience the joy of journaling for free with NoteFusion's essential features and intuitive interface",
+    price: "$0",
+    period: "",
     features: [
       {
         id: "starter-1",
-        text: "3 Entries",
+        text: "3 Folders",
         footnote:
-          "Only 3 entries are allowed in the free plan, upgrade to pro for unlimited entries",
+          "Only 3 folders are allowed in the free plan, upgrade to pro for unlimited entries",
       },
       {
         id: "starter-2",
@@ -46,16 +46,17 @@ const pricingItems = [
       },
       {
         id: "starter-3",
-        text: "2 GB Storage",
+        text: "Live Collaboration",
+        footnote: "Collaborate with your friends and family in real-time",
       },
       {
         id: "starter-4",
-        text: "Set Reminders",
+        text: "Limited File Uploads",
         negative: true,
       },
       {
         id: "starter-5",
-        text: "Priority Support",
+        text: "Invite 2 Collaborators",
         negative: true,
       },
     ],
@@ -64,15 +65,14 @@ const pricingItems = [
     id: "pro",
     plan: "Pro",
     tagline:
-      "Upgrade to Scribbly Pro for an enhanced journaling experience with advanced features and exclusive benefits.",
-    price: "400₹",
-    period: "per month",
+      "Upgrade to NoteFusion Pro for an enhanced journaling experience with exclusive benefits.",
+    price: "$12.99",
+    period: "/month",
     features: [
       {
         id: "pro-1",
         text: "Unlimited Entries",
-        footnote:
-          "Unlimited entries are allowed in the pro plan and also unlimited storage.",
+        footnote: "Unlimited entries are allowed in the pro plan.",
       },
       {
         id: "pro-2",
@@ -81,12 +81,16 @@ const pricingItems = [
       },
       {
         id: "pro-3",
-        text: "Set Reminders",
-        footnote: "Set reminders for your entries as daily or weekly basis.",
+        text: "Live Collaboration",
+        footnote: "Collaborate with your friends and family in real-time",
       },
       {
         id: "pro-4",
         text: "100 GB Storage",
+      },
+      {
+        id: "pro-5",
+        text: "Unlimited Collaborators",
       },
     ],
   },
@@ -106,7 +110,10 @@ const Pricing: FC<PricingProps> = () => {
     }
   }, [animate, isInView]);
   return (
-    <div ref={scope} className="grid grid-cols-1 gap-10 py-16 md:grid-cols-2">
+    <div
+      ref={scope}
+      className="grid grid-cols-1 gap-10 py-16 md:grid-cols-2 lg:max-w-4xl justify-center mx-auto"
+    >
       {pricingItems.map((item) => (
         <Card key={item.id} id="reveal-anim">
           <CardHeader>
@@ -130,7 +137,7 @@ const Pricing: FC<PricingProps> = () => {
                 buttonVariants({ size: "lg" }),
                 "bg-gradient-to-tr from-blue-600 to-cyan-600 text-white"
               )}
-              href="/journal/billing"
+              href="/sign-up"
             >
               Get Started
             </Link>

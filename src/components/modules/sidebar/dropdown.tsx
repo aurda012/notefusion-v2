@@ -9,7 +9,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import clsx from "clsx";
-import EmojiPicker from "@/components/common/emoji-picker";
 import { createFile, updateFile, updateFolder } from "@/lib/supabase/queries";
 import { useToast } from "@/components/ui/use-toast";
 import TooltipComponent from "@/components/common/tooltip-component";
@@ -124,37 +123,6 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   };
 
-  //onchanges
-  const onChangeEmoji = async (selectedEmoji: string) => {
-    if (!workspaceId) return;
-    if (listType === "folder") {
-      dispatch({
-        type: "UPDATE_FOLDER",
-        payload: {
-          workspaceId,
-          folderId: id,
-          folder: { iconId: selectedEmoji },
-        },
-      });
-      const { data, error } = await updateFolder(
-        { iconId: selectedEmoji },
-        id,
-        path
-      );
-      if (error) {
-        toast({
-          title: "Error",
-          variant: "destructive",
-          description: "Could not update the emoji for this folder",
-        });
-      } else {
-        toast({
-          title: "Success",
-          description: "Update emoji for the folder",
-        });
-      }
-    }
-  };
   const folderTitleChange = (e: any) => {
     if (!workspaceId) return;
     const fid = id.split("folder");
@@ -333,9 +301,7 @@ const Dropdown: React.FC<DropdownProps> = ({
               navigatatePage(id, listType);
             }}
           >
-            <div className="relative">
-              <EmojiPicker getValue={onChangeEmoji}>{iconId}</EmojiPicker>
-            </div>
+            <div className="relative">{iconId}</div>
             <input
               type="text"
               value={listType === "folder" ? folderTitle : fileTitle}
@@ -380,7 +346,6 @@ const Dropdown: React.FC<DropdownProps> = ({
           ?.folders.find((folder) => folder.id === id)
           ?.files.filter((file) => !file.inTrash)
           .map((file) => {
-            console.log("file item");
             return (
               <FileComp
                 key={file.id}
