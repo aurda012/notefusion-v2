@@ -138,7 +138,7 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
 
   return (
     <div
-      className="dark:text-white whitespace-nowrap flex justify-between items-center w-full relative group/file ml-6 mb-1"
+      className="dark:text-white whitespace-nowrap flex justify-between items-center w-full relative group/file ml-10 py-1"
       onClick={navigatatePage}
     >
       <div
@@ -167,12 +167,12 @@ const File: React.FC<FileProps> = ({ title, id, iconId, folderId }) => {
           onChange={fileTitleChange}
         />
       </div>
-      <div className="h-full hidden rounded-sm absolute right-10 items-center justify-center group-hover/file:block">
+      <div className="h-full hidden rounded-sm absolute right-10 items-center justify-center group-hover/file:block mt-3">
         <TooltipComponent message="Delete Folder">
           <Trash
             onClick={moveToTrash}
             size={15}
-            className="hover:dark:text-white dark:text-Neutrals/neutrals-7 transition-colors"
+            className="hover:dark:text-white dark:text-Neutrals/neutrals-7 transition-colors mr-1"
           />
         </TooltipComponent>
       </div>

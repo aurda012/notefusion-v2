@@ -4,7 +4,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useAppState } from "@/hooks/useAppState";
 import { User, workspace } from "@/lib/supabase/types";
 import { useSupabaseUser } from "@/hooks/useSupabaseUser";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import {
   Briefcase,
@@ -61,6 +61,7 @@ const SettingsForm = () => {
   const { user, subscription } = useSupabaseUser();
   const { open, setOpen } = useSubscriptionModal();
   const router = useRouter();
+  const path = usePathname();
   const supabase = createClientComponentClient();
   const { state, workspaceId, dispatch } = useAppState();
   const [permissions, setPermissions] = useState("private");
@@ -144,7 +145,7 @@ const SettingsForm = () => {
         type: "UPDATE_WORKSPACE",
         payload: { workspace: { logo: data.path }, workspaceId },
       });
-      await updateWorkspace({ logo: data.path }, workspaceId);
+      await updateWorkspace({ logo: data.path }, workspaceId, path);
       setUploadingLogo(false);
     }
   };

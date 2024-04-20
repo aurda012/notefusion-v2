@@ -269,7 +269,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   const hoverStyles = useMemo(
     () =>
       clsx(
-        "h-full hidden rounded-sm absolute right-0 items-center justify-center",
+        "h-full hidden rounded-sm absolute right-0 items-center justify-center mt-2",
         {
           "group-hover/file:block": listType === "file",
           "group-hover/folder:block": listType === "folder",
@@ -310,20 +310,19 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   };
 
+  console.log(state.workspaces);
+
   return (
     <AccordionItem value={id} className={listStyles}>
-      <AccordionTrigger
-        id={listType}
-        className="hover:no-underline 
+      <div className="flex">
+        <AccordionTrigger
+          id={listType}
+          className="hover:no-underline 
         p-2 
         dark:text-muted-foreground 
         text-sm"
-        disabled={listType === "file"}
-        onClick={(e) => {
-          e.stopPropagation();
-          navigatatePage(id, listType);
-        }}
-      >
+          disabled={listType === "file"}
+        />
         <div className={groupIdentifies}>
           <div
             className="flex 
@@ -331,6 +330,10 @@ const Dropdown: React.FC<DropdownProps> = ({
           items-center 
           justify-center 
           overflow-hidden"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigatatePage(id, listType);
+            }}
           >
             <div className="relative">
               <EmojiPicker getValue={onChangeEmoji}>{iconId}</EmojiPicker>
@@ -366,19 +369,20 @@ const Dropdown: React.FC<DropdownProps> = ({
                 <PlusIcon
                   onClick={addNewFile}
                   size={15}
-                  className="hover:dark:text-white dark:text-Neutrals/neutrals-7 transition-colors"
+                  className="hover:dark:text-white dark:text-Neutrals/neutrals-7 transition-colors ml-1"
                 />
               </TooltipComponent>
             )}
           </div>
         </div>
-      </AccordionTrigger>
+      </div>
       <AccordionContent>
         {state.workspaces
           .find((workspace) => workspace.id === workspaceId)
           ?.folders.find((folder) => folder.id === id)
           ?.files.filter((file) => !file.inTrash)
           .map((file) => {
+            console.log("file item");
             return (
               <FileComp
                 key={file.id}
