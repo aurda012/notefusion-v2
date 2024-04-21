@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === "production") {
 
 const db = drizzle(connection, {
   schema: { ...schema, ...sbSchema },
-  logger: process.env.NODE_ENV === "development",
+  // logger: process.env.NODE_ENV === "development",
 });
 const migrateDB = async () => {
   try {

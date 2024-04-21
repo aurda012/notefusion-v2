@@ -48,6 +48,7 @@ export const useBlockEditor = ({
       //     }
       //   });
       // },
+      content,
       onUpdate: (e) => debouncedUpdates(e),
       extensions: [
         ...ExtensionKit({

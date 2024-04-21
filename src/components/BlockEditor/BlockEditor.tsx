@@ -4,7 +4,6 @@ import { EditorContent, JSONContent, PureEditorContent } from "@tiptap/react";
 import React, {
   startTransition,
   useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -17,7 +16,7 @@ import { useBlockEditor } from "@/hooks/useBlockEditor";
 
 import "@/styles/index.css";
 
-import { Sidebar } from "@/components/Sidebar";
+import { Sidebar } from "@/components/sidebar";
 import ImageBlockMenu from "@/extensions/ImageBlock/components/ImageBlockMenu";
 import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
@@ -33,13 +32,10 @@ import {
   updateWorkspace,
 } from "@/lib/supabase/queries";
 import EditorRestoreHeader from "./components/EditorRestoreHeader";
-import Image from "next/image";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import EditorDetails from "./components/EditorDetails";
 import { ScrollArea } from "../ui/scroll-area";
 import CoverImage from "./components/CoverImage";
-import { File, Folder, workspace } from "@/lib/supabase/types";
-import { Skeleton } from "../ui/skeleton";
 
 export const BlockEditor = ({
   ydoc,

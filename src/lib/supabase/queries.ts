@@ -59,13 +59,16 @@ export const getFolders = async (workspaceId: string) => {
     };
 
   try {
-    const results: Folder[] | [] = await db
-      .select()
-      .from(folders)
-      .orderBy(folders.createdAt)
-      .where(eq(folders.workspaceId, workspaceId));
+    const results: Folder[] | [] = await db.query.folders.findMany({
+      where: (folders, { eq }) => eq(folders.workspaceId, workspaceId),
+      with: {
+        files: true,
+      },
+      orderBy: [folders.createdAt],
+    });
     return { data: results, error: null };
-  } catch (error) {
+  } catch (error: any) {
+    console.log(error.message);
     return { data: null, error: "Error" };
   }
 };
