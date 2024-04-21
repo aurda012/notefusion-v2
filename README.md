@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-      <img src="https://raw.githubusercontent.com/aurda012/notefusion/main/public/notefusion-banner.png" style="border-radius: 20px" alt="Project Banner">  
+      <img src="https://raw.githubusercontent.com/aurda012/notefusion-v2/main/public/images/notefusion-banner.png" style="border-radius: 20px" alt="Project Banner">  
   <br />
 
   <div>
